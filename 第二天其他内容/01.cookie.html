@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //原生获得cookie
+    // let date = new Date()
+    // date.setMinutes(28)
+    // let dateStr = date.toUTCString()
+    // console.log(dateStr)
+    // let cookie = document.cookie 
+    // document.cookie = "name=yaoming"
+    // document.cookie = "sex=man; expires=" + dateStr
+    // console.log(document.cookie)
+
+    //获取数据
+    //let obj = {
+    //     name:'yaoming',
+    //     sex:'man'
+    // }
+    // console.log(obj.name)
+
+
+    //函数获得getcookie()得到cookie
+    // function getCookie(){
+    //     let obj={}
+    //     let cookieString = document.cookie
+
+    //     let cookieArr = cookieString.split(';')
+    //     // console.log(cookieArr)
+    //     cookieArr.forEach(item=>{
+    //         let tempArr = item.split('=')
+    //         console.log(tempArr)
+    //         let key = tempArr[0].trim()
+    //         // console.log(key)
+    //         let value = tempArr[1]
+    //         // console.log(value)
+    //         obj[key] = value
+    //     })
+    //     return obj
+    // }
+    // let cookieObj = getCookie()
+    // console.log(cookieObj.name)
+
+    //函数setcookie()设置cookie
+    //expires时过期时间
+    //假设用户给你传输的expires时以秒为单位的
+    function setCookie(key,value,expires){
+        if(!expires){
+        document.cookie = `${key}=${value}`
+        }else{
+            let date = new Date()
+            let unix = date.getTime()//ms单位的时间
+            unix = expires * 1000 + unix
+
+            let newDate= new Date(unix).toUTCString
+            document.cookie = `${key}=${value}; expires = ${newDate}`
+        }
+    }
+    // setCookie('food','haochi')
+    // setCookie('star','piaoliang','60')
+
+    //函数删除cookie
+    function removeCookie(key){
+        let value = ''
+        let date = new Date().getTime()
+        date = date - 1000
+        let dateStr = new Date(date).toUTCString
+        document.cookie = `${key}=${value};expires=${dateStr}`
+    }
+    setCookie('nba','good','120')
+    setTimeout(()=>{
+        removeCookie('nba'),
+        alert('lol')
+    },10000)
+    
+
+</script>
+</html>

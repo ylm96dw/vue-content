@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <button id="btn" >发送请求</button>
+    <button id="btn1">请求B网站</button>
+    <button id="btn2">利用服务器A请求服务器B</button>
+    <button id="btn3">请求线上的axios</button>
+  </body>
+  <script src="/javascripts/axios.js"></script>
+  <script>
+    let btn = document.getElementById('btn')
+    let btn1 = document.getElementById('btn1')
+    let btn2 = document.getElementById('btn2')
+    let btn3 = document.getElementById('btn3')
+    btn.onclick = function(){
+      axios.get('/getMsg').then(res=>{
+        console.log(res)
+      })
+    }
+    btn1.onclick = function(){
+      axios.get('/proxy').then(res=>{
+        console.log(res)
+      })
+    }
+    btn2.onclick = function(){
+      axios.get('/api/demo2').then(res=>{
+        console.log(res)
+      })
+    }
+    btn3.onclick = function(){
+      // axios.get('https://m.douban.com/rexxar/api/v2/book/30258976/verify_users?start=0&count=2&ck=').then(res=>{
+      //   console.log(res)
+      // })
+      //线上跨域---失败了
+      // axios.get('https://bird.ioliu.cn/v1',{
+      //   params:{
+      //     url:'https://m.douban.com/rexxar/api/v2/book/30258976/verify_users?start=0&count=2&ck='
+      //   }
+        
+      // }).then(res=>{
+      //   console.log(res)
+      // })
+    }
+  </script>
+</html>
